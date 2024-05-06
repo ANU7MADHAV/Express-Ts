@@ -4,21 +4,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const instructorSchema = new mongoose_1.default.Schema({
-    name: {
+const courseSchema = new mongoose_1.default.Schema({
+    title: {
         type: String,
         required: true,
-    },
-    email: {
-        type: String,
-        required: true,
+        minLength: 3,
+        maxLength: 30,
         unique: true,
     },
-    role: {
+    description: {
         type: String,
-        enum: ["instructor", "admin"],
+        required: true,
+        minLength: 3,
+        maxLength: 50,
     },
-    courses: [{ type: mongoose_1.default.Types.ObjectId, ref: "Course" }],
+    price: {
+        type: Number,
+        required: true,
+    },
+    image: {
+        type: String,
+    },
+    instructor: [{ type: mongoose_1.default.Types.ObjectId, ref: "Instructor" }],
 }, { timestamps: true });
-const Instructor = mongoose_1.default.model("Instructor", instructorSchema);
-exports.default = Instructor;
+const Course = mongoose_1.default.model("Course", courseSchema);
+exports.default = Course;

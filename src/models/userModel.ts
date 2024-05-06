@@ -1,4 +1,4 @@
-import mongoose, { Types } from "mongoose";
+import mongoose from "mongoose";
 
 export type UserType = {
   email: string;
@@ -8,7 +8,7 @@ export type UserType = {
   courses?: [];
 };
 
-const userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema<UserType>(
   {
     email: {
       type: String,
@@ -37,6 +37,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model<UserType>("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

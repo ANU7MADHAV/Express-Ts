@@ -1,35 +1,40 @@
-import mongoose, { Types } from "mongoose";
+import mongoose from "mongoose";
 
-export type InstructorType = {
-  name: string;
-  email: string;
-  role: string;
-  courses: [];
+export type CourseType = {
+  title: string;
+  description: string;
+  price: number;
+  instructor: string;
+  image: string;
 };
 
-const instructorSchema = new mongoose.Schema(
+const courseSchema = new mongoose.Schema<CourseType>(
   {
-    name: {
+    title: {
       type: String,
       required: true,
-    },
-    email: {
-      type: String,
-      required: true,
+      minLength: 3,
+      maxLength: 30,
       unique: true,
     },
-    role: {
+    description: {
       type: String,
-      enum: ["instructor", "admin"],
+      required: true,
+      minLength: 3,
+      maxLength: 50,
     },
-    courses: [{ type: mongoose.Types.ObjectId, ref: "Course" }],
+    price: {
+      type: Number,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
+    instructor: [{ type: mongoose.Types.ObjectId, ref: "Instructor" }],
   },
   { timestamps: true }
 );
 
-const Instructor = mongoose.model<InstructorType>(
-  "Instructor",
-  instructorSchema
-);
+const Course = mongoose.model("Course", courseSchema);
 
-export default Instructor;
+export default Course;

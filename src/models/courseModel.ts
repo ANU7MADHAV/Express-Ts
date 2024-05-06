@@ -1,4 +1,4 @@
-import mongoose, { Types } from "mongoose";
+import mongoose from "mongoose";
 
 export type CourseType = {
   title: string;
@@ -8,7 +8,7 @@ export type CourseType = {
   image: string;
 };
 
-const courseSchema = new mongoose.Schema(
+const courseSchema = new mongoose.Schema<CourseType>(
   {
     title: {
       type: String,
@@ -35,6 +35,6 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Course = mongoose.model<CourseType>("Course", courseSchema);
+const Course = mongoose.model("Course", courseSchema);
 
 export default Course;

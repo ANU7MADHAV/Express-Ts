@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import connectDb from "./config/db";
+import connectDb from "./config/databse";
 import userRouter from "./routes/userRoutes";
 
 dotenv.config();

@@ -38,7 +38,7 @@ export const signup = async (req: Request, res: Response) => {
 
 export const signin = async (req: Request, res: Response) => {
   try {
-    const { email, password }: UserType = req.body as UserType;
+    const { email, password } = req.body as UserType;
 
     const user = await User.findOne({ email });
 
